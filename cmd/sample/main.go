@@ -4,14 +4,20 @@ import (
 	"github.com/AsynkronIT/goconsole"
 	"github.com/AsynkronIT/protoactor-go/actor"
 
-	"github.com/gmaslowski/go-actor-samples/internal/app"
+	"github.com/gmaslowski/go-actor-samples/internal/app/hello"
+	"github.com/gmaslowski/go-actor-samples/internal/app/print"
 )
 
 func main() {
-	props := actor.FromInstance(&hello.Greeter{})
-	pid := actor.Spawn(props)
-	pid.Tell(hello.Greeting{Who: "Roger"})
-	pid.Tell(hello.Greeting{Who: "John"})
-	pid.Tell(hello.Greeting{Who: "Jimmy"})
+	greeterProps := actor.FromInstance(&hello.Greeter{})
+	greeter := actor.Spawn(greeterProps)
+
+	printerProps := actor.FromInstance(&print.Printer{})
+	printer := actor.Spawn(printerProps)
+
+	greeter.Request(hello.Greeting{Who: "Roger"}, printer)
+	greeter.Request(hello.Greeting{Who: "John"}, printer)
+	greeter.Request(hello.Greeting{Who: "Jimmy"}, printer)
+
 	console.ReadLine()
 }
