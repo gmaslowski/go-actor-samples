@@ -1,7 +1,7 @@
 package print
 
 import (
-	"fmt"
+	"log"
 
 	"github.com/AsynkronIT/protoactor-go/actor"
 )
@@ -12,6 +12,6 @@ type Printer struct{}
 func (state *Printer) Receive(context actor.Context) {
 	switch msg := context.Message().(type) {
 	case string:
-		fmt.Printf("%v\n", msg)
+		log.Printf("%v\n", msg)
 	}
 }
