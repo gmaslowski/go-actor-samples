@@ -11,7 +11,7 @@ func main() {
 	props := actor.FromInstance(&hello.Greeter{})
 	pid := actor.Spawn(props)
 	pid.Tell(hello.Greeting{Who: "Roger"})
-	pid.Tell(hello.Greeting{Who: "Roger"})
-	pid.Tell(hello.Greeting{Who: "Roger"})
+	pid.Tell(hello.Greeting{Who: "John"})
+	pid.Tell(hello.Greeting{Who: "Jimmy"})
 	console.ReadLine()
 }
