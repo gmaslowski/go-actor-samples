@@ -1,4 +1,4 @@
-proto-test
-==========
+go-actor-samples
+================
 
-Playing around with Go and actor model.
+Playing around with Go and actor model (proto.actor).
